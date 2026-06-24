@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>مصاريف الاسرة الايام الماضية</title>
+  <title>النفقات المنزلية · بطاقات</title>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * {
@@ -13,9 +13,9 @@
       font-family: 'IBM Plex Sans Arabic', 'Segoe UI', 'Tajawal', system-ui, sans-serif;
     }
     body {
-      background: radial-gradient(circle at 10% 20%, #0f1f1a, #05100c);
+      background: radial-gradient(circle at 10% 20%, #0a1a15, #020806);
       min-height: 100vh;
-      padding: 1.2rem;
+      padding: 0.8rem;
       color: #eef5f0;
       display: flex;
       justify-content: center;
@@ -32,20 +32,20 @@
     .glass-header {
       background: rgba(15, 35, 30, 0.55);
       backdrop-filter: blur(10px);
-      border-radius: 1rem;
-      padding: 1rem 1.5rem;
-      margin-bottom: 1.8rem;
+      border-radius: 0.8rem;
+      padding: 0.7rem 1.2rem;
+      margin-bottom: 1.2rem;
       border: 1px solid rgba(80, 200, 120, 0.3);
       box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 0.8rem;
+      gap: 0.5rem;
       width: 100%;
     }
     .brand h1 {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: 800;
       background: linear-gradient(135deg, #f9e79f, #f7dc6f);
       background-clip: text;
@@ -54,35 +54,35 @@
       letter-spacing: -0.2px;
     }
     .brand p {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       color: #b9e6cd;
-      margin-top: 4px;
+      margin-top: 2px;
       font-weight: 500;
     }
     .team-badge {
       background: rgba(30, 70, 55, 0.7);
       border-radius: 2rem;
-      padding: 0.3rem 1.2rem;
+      padding: 0.2rem 1rem;
       backdrop-filter: blur(4px);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
       border-right: 2px solid #f1c40f;
       color: #f1c40f;
     }
     .stats-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
       width: 100%;
-      max-width: 600px;
+      max-width: 500px;
       justify-items: center;
     }
     .stat-card {
       background: rgba(15, 38, 32, 0.75);
       backdrop-filter: blur(8px);
-      border-radius: 0.9rem;
-      padding: 1rem 1.2rem;
+      border-radius: 0.7rem;
+      padding: 0.7rem 1rem;
       border: 1px solid rgba(70, 210, 130, 0.3);
       transition: 0.2s;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -90,7 +90,7 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      min-width: 180px;
+      min-width: 150px;
     }
     .stat-card:hover {
       transform: translateY(-3px);
@@ -103,38 +103,81 @@
       align-items: flex-start;
     }
     .stat-label {
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       font-weight: 600;
       color: #c0f0d4;
       letter-spacing: 0.2px;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       display: flex;
       align-items: center;
       gap: 5px;
     }
     .stat-value {
-      font-size: 2.2rem;
+      font-size: 1.8rem;
       font-weight: 800;
       color: #6ef0a3;
       line-height: 1.1;
     }
     .stat-icon {
-      font-size: 2.2rem;
+      font-size: 1.8rem;
       opacity: 0.85;
     }
+
+    /* قسم فاصل الأيام */
+    .day-section {
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+    .day-header {
+      background: rgba(20, 50, 40, 0.8);
+      backdrop-filter: blur(8px);
+      border-radius: 0.8rem;
+      padding: 0.5rem 1.2rem;
+      margin-bottom: 0.8rem;
+      border: 1px solid rgba(241, 196, 15, 0.4);
+      border-right: 4px solid #f1c40f;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .day-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f7dc6f;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .day-total {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #6ef0a3;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 0.2rem 0.8rem;
+      border-radius: 2rem;
+      border: 1px solid rgba(80, 220, 130, 0.3);
+    }
+    .day-total span {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #f7dc6f;
+    }
+
     .expenses-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
-      margin-top: 0.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.8rem;
       width: 100%;
       justify-items: center;
     }
     .expense-card {
       background: rgba(8, 28, 22, 0.85);
       backdrop-filter: blur(8px);
-      border-radius: 0.9rem;
-      padding: 0.7rem 0.8rem;
+      border-radius: 0.7rem;
+      padding: 0.5rem 0.7rem;
       transition: all 0.25s ease;
       border: 1px solid rgba(70, 200, 120, 0.3);
       box-shadow: 0 6px 12px -4px rgba(0, 0, 0, 0.4);
@@ -143,7 +186,7 @@
       position: relative;
       overflow: hidden;
       width: 100%;
-      max-width: 360px;
+      max-width: 340px;
     }
     .expense-card::before {
       content: '';
@@ -166,54 +209,54 @@
     .card-header {
       display: flex;
       align-items: baseline;
-      gap: 0.4rem;
-      margin-bottom: 6px;
+      gap: 0.3rem;
+      margin-bottom: 4px;
       flex-wrap: wrap;
       position: relative;
       z-index: 1;
     }
     .amount-badge {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: 800;
       background: rgba(0, 0, 0, 0.3);
-      border-radius: 0.8rem;
-      padding: 0.05rem 0.6rem;
+      border-radius: 0.6rem;
+      padding: 0.02rem 0.5rem;
       line-height: 1.3;
       color: #f7dc6f;
       letter-spacing: 0.5px;
     }
     .date-badge {
-      font-size: 0.85rem;
+      font-size: 0.7rem;
       font-weight: 600;
       background: rgba(255, 255, 255, 0.08);
-      padding: 0.1rem 0.6rem;
+      padding: 0.05rem 0.5rem;
       border-radius: 2rem;
       color: #b0e0c2;
       border: 1px solid rgba(70, 200, 120, 0.2);
     }
     .card-desc {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 500;
       color: #d4f0e2;
-      margin: 4px 0 6px;
+      margin: 3px 0 4px;
       line-height: 1.4;
       position: relative;
       z-index: 1;
       word-break: break-word;
       background: rgba(0,0,0,0.12);
-      padding: 4px 10px;
-      border-radius: 1.2rem;
+      padding: 3px 8px;
+      border-radius: 1rem;
     }
     .recipient-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       margin-top: 2px;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 500;
       color: #c0e6d0;
       background: rgba(10, 40, 30, 0.5);
-      padding: 4px 12px;
+      padding: 3px 10px;
       border-radius: 2rem;
       position: relative;
       z-index: 1;
@@ -236,22 +279,26 @@
       width: 100%;
     }
     footer {
-      margin-top: 2.2rem;
+      margin-top: 1.5rem;
       text-align: center;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 500;
       opacity: 0.6;
       width: 100%;
     }
     @media (max-width: 640px) {
-      body { padding: 0.8rem; }
-      .glass-header { padding: 0.8rem 1rem; }
-      .brand h1 { font-size: 1.3rem; }
-      .stat-value { font-size: 1.8rem; }
-      .amount-badge { font-size: 1.4rem; }
-      .date-badge { font-size: 0.75rem; }
+      body { padding: 0.5rem; }
+      .glass-header { padding: 0.5rem 0.8rem; }
+      .brand h1 { font-size: 1.1rem; }
+      .stat-value { font-size: 1.5rem; }
+      .amount-badge { font-size: 1.2rem; }
+      .date-badge { font-size: 0.65rem; }
       .stats-row { max-width: 100%; }
       .expense-card { max-width: 100%; }
+      .day-header { padding: 0.4rem 0.8rem; }
+      .day-name { font-size: 0.9rem; }
+      .day-total { font-size: 0.8rem; }
+      .stat-card { min-width: 120px; padding: 0.5rem 0.7rem; }
     }
   </style>
 </head>
@@ -259,8 +306,8 @@
 <div class="container">
   <div class="glass-header">
     <div class="brand">
-      <h1>🏠 المصاريف المنزلية</h1>
-      <p>📋 مصاريف الأسرة الكريمة الأيام الحالية</p>
+      <h1>🏠 النفقات المنزلية</h1>
+      <p>📋 بطاقات المصروفات · عرض مفصل</p>
     </div>
     <div class="team-badge">
       💰 إجمالي المصروفات
@@ -284,7 +331,7 @@
     </div>
   </div>
 
-  <div id="expensesGrid" class="expenses-grid"></div>
+  <div id="expensesContainer"></div>
   <footer>📌 جميع المبالغ بالجنيه المصري (EP) · التحديث تلقائي</footer>
 </div>
 
@@ -365,6 +412,23 @@
     }
   ];
 
+  // أسماء الأيام بالعربية
+  const dayNames = {
+    '0': 'الأحد',
+    '1': 'الإثنين',
+    '2': 'الثلاثاء',
+    '3': 'الأربعاء',
+    '4': 'الخميس',
+    '5': 'الجمعة',
+    '6': 'السبت'
+  };
+
+  // دالة للحصول على اسم اليوم من التاريخ
+  function getDayName(dateStr) {
+    const date = new Date(dateStr);
+    return dayNames[date.getDay()];
+  }
+
   // تحديث الإحصائيات
   function updateStatistics() {
     const total = expensesData.length;
@@ -374,33 +438,72 @@
     document.getElementById('totalAmount').innerText = totalAmount + ' EP';
   }
 
-  // عرض بطاقات النفقات
+  // عرض بطاقات النفقات مع فاصل الأيام
   function renderExpenses() {
-    const grid = document.getElementById('expensesGrid');
-    if (!grid) return;
+    const container = document.getElementById('expensesContainer');
+    if (!container) return;
 
     if (expensesData.length === 0) {
-      grid.innerHTML = `<div class="empty-state">📭 لا توجد نفقات مسجلة حالياً لعرضها</div>`;
+      container.innerHTML = `<div class="empty-state">📭 لا توجد نفقات مسجلة حالياً لعرضها</div>`;
       updateStatistics();
       return;
     }
 
-    let cardsHtml = '';
+    // تجميع النفقات حسب التاريخ
+    const groupedByDate = {};
     expensesData.forEach(exp => {
-      cardsHtml += `
-        <div class="expense-card">
-          <div class="card-header">
-            <div class="amount-badge">${exp.amount} EP</div>
-            <div class="date-badge">📅 ${exp.date}</div>
+      if (!groupedByDate[exp.date]) {
+        groupedByDate[exp.date] = [];
+      }
+      groupedByDate[exp.date].push(exp);
+    });
+
+    // ترتيب التواريخ من الأحدث إلى الأقدم
+    const sortedDates = Object.keys(groupedByDate).sort((a, b) => new Date(b) - new Date(a));
+
+    let html = '';
+    sortedDates.forEach(date => {
+      const dayExpenses = groupedByDate[date];
+      const dayTotal = dayExpenses.reduce((sum, exp) => sum + exp.amount, 0);
+      const dayName = getDayName(date);
+
+      // قسم اليوم
+      html += `
+        <div class="day-section">
+          <div class="day-header">
+            <div class="day-name">
+              📅 ${dayName} · ${date}
+            </div>
+            <div class="day-total">
+              💰 إجمالي اليوم: <span>${dayTotal} EP</span>
+            </div>
           </div>
-          <div class="card-desc">${escapeHtml(exp.description)}</div>
-          <div class="recipient-row">
-            <span>🧑‍ المسلم له: <strong>${escapeHtml(exp.recipient)}</strong></span>
+          <div class="expenses-grid">
+      `;
+
+      // بطاقات المصروفات في هذا اليوم
+      dayExpenses.forEach(exp => {
+        html += `
+          <div class="expense-card">
+            <div class="card-header">
+              <div class="amount-badge">${exp.amount} EP</div>
+              <div class="date-badge">📅 ${exp.date}</div>
+            </div>
+            <div class="card-desc">${escapeHtml(exp.description)}</div>
+            <div class="recipient-row">
+              <span>🧑‍💼 المسلم له: <strong>${escapeHtml(exp.recipient)}</strong></span>
+            </div>
+          </div>
+        `;
+      });
+
+      html += `
           </div>
         </div>
       `;
     });
-    grid.innerHTML = cardsHtml;
+
+    container.innerHTML = html;
     updateStatistics();
   }
 
