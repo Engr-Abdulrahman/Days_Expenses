@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>النفقات المنزلية · بطاقات</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'IBM Plex Sans Arabic', 'Segoe UI', 'Tajawal', system-ui, sans-serif;
+    }
+    body {
+      background: radial-gradient(circle at 10% 20%, #0f1f1a, #05100c);
+      min-height: 100vh;
+      padding: 1.2rem;
+      color: #eef5f0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .container {
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .glass-header {
+      background: rgba(15, 35, 30, 0.55);
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.8rem;
+      border: 1px solid rgba(80, 200, 120, 0.3);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      width: 100%;
+    }
+    .brand h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #f9e79f, #f7dc6f);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.2px;
+    }
+    .brand p {
+      font-size: 0.8rem;
+      color: #b9e6cd;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+    .team-badge {
+      background: rgba(30, 70, 55, 0.7);
+      border-radius: 2rem;
+      padding: 0.3rem 1.2rem;
+      backdrop-filter: blur(4px);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-right: 2px solid #f1c40f;
+      color: #f1c40f;
+    }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+      width: 100%;
+      max-width: 600px;
+      justify-items: center;
+    }
+    .stat-card {
+      background: rgba(15, 38, 32, 0.75);
+      backdrop-filter: blur(8px);
+      border-radius: 0.9rem;
+      padding: 1rem 1.2rem;
+      border: 1px solid rgba(70, 210, 130, 0.3);
+      transition: 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      min-width: 180px;
+    }
+    .stat-card:hover {
+      transform: translateY(-3px);
+      background: rgba(30, 70, 55, 0.85);
+      border-color: rgba(80, 220, 130, 0.7);
+    }
+    .stat-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #c0f0d4;
+      letter-spacing: 0.2px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .stat-value {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #6ef0a3;
+      line-height: 1.1;
+    }
+    .stat-icon {
+      font-size: 2.2rem;
+      opacity: 0.85;
+    }
+    .expenses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+      width: 100%;
+      justify-items: center;
+    }
+    .expense-card {
+      background: rgba(8, 28, 22, 0.85);
+      backdrop-filter: blur(8px);
+      border-radius: 0.9rem;
+      padding: 0.7rem 0.8rem;
+      transition: all 0.25s ease;
+      border: 1px solid rgba(70, 200, 120, 0.3);
+      box-shadow: 0 6px 12px -4px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 360px;
+    }
+    .expense-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      background: radial-gradient(circle at 30% 10%, rgba(80, 220, 130, 0.08), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .expense-card:hover {
+      transform: translateY(-4px);
+      background: rgba(12, 38, 30, 0.92);
+      border-color: #3edb7a;
+      box-shadow: 0 14px 20px -8px rgba(0, 0, 0, 0.5);
+    }
+    .card-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .amount-badge {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 0.8rem;
+      padding: 0.05rem 0.6rem;
+      line-height: 1.3;
+      color: #f7dc6f;
+      letter-spacing: 0.5px;
+    }
+    .date-badge {
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.1rem 0.6rem;
+      border-radius: 2rem;
+      color: #b0e0c2;
+      border: 1px solid rgba(70, 200, 120, 0.2);
+    }
+    .card-desc {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #d4f0e2;
+      margin: 4px 0 6px;
+      line-height: 1.4;
+      position: relative;
+      z-index: 1;
+      word-break: break-word;
+      background: rgba(0,0,0,0.12);
+      padding: 4px 10px;
+      border-radius: 1.2rem;
+    }
+    .recipient-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 2px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #c0e6d0;
+      background: rgba(10, 40, 30, 0.5);
+      padding: 4px 12px;
+      border-radius: 2rem;
+      position: relative;
+      z-index: 1;
+      gap: 4px;
+      border-right: 2px solid #f1c40f;
+    }
+    .recipient-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 2.5rem;
+      background: rgba(10, 30, 24, 0.6);
+      border-radius: 1rem;
+      font-size: 1rem;
+      font-weight: 500;
+      grid-column: 1 / -1;
+      width: 100%;
+    }
+    footer {
+      margin-top: 2.2rem;
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 500;
+      opacity: 0.6;
+      width: 100%;
+    }
+    @media (max-width: 640px) {
+      body { padding: 0.8rem; }
+      .glass-header { padding: 0.8rem 1rem; }
+      .brand h1 { font-size: 1.3rem; }
+      .stat-value { font-size: 1.8rem; }
+      .amount-badge { font-size: 1.4rem; }
+      .date-badge { font-size: 0.75rem; }
+      .stats-row { max-width: 100%; }
+      .expense-card { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="glass-header">
+    <div class="brand">
+      <h1>🏠 النفقات المنزلية</h1>
+      <p>📋 بطاقات المصروفات · عرض مفصل</p>
+    </div>
+    <div class="team-badge">
+      💰 إجمالي المصروفات
+    </div>
+  </div>
+
+  <div class="stats-row" id="statsContainer">
+    <div class="stat-card">
+      <div class="stat-info">
+        <div class="stat-label">📊 عدد النفقات</div>
+        <div class="stat-value" id="totalCount">0</div>
+      </div>
+      <div class="stat-icon">🧾</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-info">
+        <div class="stat-label">💰 إجمالي المبلغ</div>
+        <div class="stat-value" id="totalAmount">0</div>
+      </div>
+      <div class="stat-icon">🏷️</div>
+    </div>
+  </div>
+
+  <div id="expensesGrid" class="expenses-grid"></div>
+  <footer>📌 جميع المبالغ بالجنيه المصري (EP) · التحديث تلقائي</footer>
+</div>
+
+<script>
+  // --------------------------------------------------------------
+  // البيانات المطلوبة حسب الجدول
+  // --------------------------------------------------------------
+  let expensesData = [
+    {
+      id: 1,
+      amount: 200,
+      date: "2026-06-24",
+      description: "مصطفى بالليل خد 200 جنيه، 100 له، ومية يجيب منها عيش وجبنة وقهوة.",
+      recipient: "مصطفى"
+    },
+    {
+      id: 2,
+      amount: 100,
+      date: "2026-06-24",
+      description: "من ام ناصر، عبدالله جاب كارت اتصالات لمريم، وكروت نت صغيرة، ورز.",
+      recipient: "عبدالله"
+    },
+    {
+      id: 3,
+      amount: 200,
+      date: "2026-06-24",
+      description: "خدها عبدالله يجيب حاجات للجماعة، رز ومن الصيدلية.",
+      recipient: "عبدالله"
+    },
+    {
+      id: 4,
+      amount: 100,
+      date: "2026-06-23",
+      description: "مصطفى خد 100 جنيه.",
+      recipient: "مصطفى"
+    },
+    {
+      id: 5,
+      amount: 150,
+      date: "2026-06-23",
+      description: "مصطفى جاب حاجات من تحت الكوم.",
+      recipient: "مصطفى"
+    },
+    {
+      id: 6,
+      amount: 100,
+      date: "2026-06-23",
+      description: "من ام ناصر.. منها رز للغدا، وكارت اتصالات لمريم.",
+      recipient: "عبدالله"
+    },
+    {
+      id: 7,
+      amount: 450,
+      date: "2026-06-23",
+      description: "مصطفى خد 500 جـ لمشوار بني سويف رايح لندى، رجع منها 50 جنيه.",
+      recipient: "مصطفى"
+    },
+    {
+      id: 8,
+      amount: 200,
+      date: "2026-06-22",
+      description: "شحنا الكهرباء بـ200 جنيه مساء.",
+      recipient: "مصطفى"
+    },
+    {
+      id: 9,
+      amount: 100,
+      date: "2026-06-22",
+      description: "مية جنيه خدها مصطفى.",
+      recipient: "مصطفى"
+    },
+    {
+      id: 10,
+      amount: 100,
+      date: "2026-06-22",
+      description: "مية جنيه خدتها مريم عشان بكرة الجامعة.",
+      recipient: "أبي الغالي"
+    }
+  ];
+
+  // تحديث الإحصائيات
+  function updateStatistics() {
+    const total = expensesData.length;
+    document.getElementById('totalCount').innerText = total;
+
+    const totalAmount = expensesData.reduce((acc, cur) => acc + cur.amount, 0);
+    document.getElementById('totalAmount').innerText = totalAmount + ' EP';
+  }
+
+  // عرض بطاقات النفقات
+  function renderExpenses() {
+    const grid = document.getElementById('expensesGrid');
+    if (!grid) return;
+
+    if (expensesData.length === 0) {
+      grid.innerHTML = `<div class="empty-state">📭 لا توجد نفقات مسجلة حالياً لعرضها</div>`;
+      updateStatistics();
+      return;
+    }
+
+    let cardsHtml = '';
+    expensesData.forEach(exp => {
+      cardsHtml += `
+        <div class="expense-card">
+          <div class="card-header">
+            <div class="amount-badge">${exp.amount} EP</div>
+            <div class="date-badge">📅 ${exp.date}</div>
+          </div>
+          <div class="card-desc">${escapeHtml(exp.description)}</div>
+          <div class="recipient-row">
+            <span>🧑‍ المسلم له: <strong>${escapeHtml(exp.recipient)}</strong></span>
+          </div>
+        </div>
+      `;
+    });
+    grid.innerHTML = cardsHtml;
+    updateStatistics();
+  }
+
+  // دالة تنظيف النص
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    });
+  }
+
+  // بدء التشغيل
+  function init() {
+    renderExpenses();
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
